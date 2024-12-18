@@ -34,6 +34,7 @@ func TestParseRelative(t *testing.T) {
 		{"2 days ago", base.AddDate(0, 0, -2)},
 		{"5 hours ago", base.Add(-5 * time.Hour)},
 		{"3 weeks from now", base.AddDate(0, 0, 3*7)},
+		{"3 weeks ago", base.AddDate(0, 0, -3*7)},
 	}
 
 	for _, test := range tests {
