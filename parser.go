@@ -74,6 +74,13 @@ func parseRelative(s string, base time.Time) (time.Time, error) {
 		return adjustDate(base, value, unit)
 	}
 
+	reIn := regexp.MustCompile(`in\s+(\d+)\s*(day|week|month|year|hour|minute|second)s?`)
+	if matches := reIn.FindStringSubmatch(s); len(matches) == 3 {
+		value, _ := strconv.Atoi(matches[1])
+		unit := matches[2]
+		return adjustDate(base, value, unit)
+	}
+
 	return time.Time{}, ErrRelativeParse
 }
 
