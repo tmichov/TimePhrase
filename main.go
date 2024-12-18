@@ -5,18 +5,19 @@ import (
 )
 
 func Parse(dateStr string, base time.Time) (time.Time, error) {
-
 	if dateStr == "" {
 		return time.Time{}, ErrEmptyString
 	}
 
-	if t, err := parseAbsolute(dateStr); err == nil {
+	t, err := parseAbsolute(dateStr)
+	if err == nil {
 		return t, nil
 	}
 
-	if t, err := parseRelative(dateStr, base); err == nil {
+	t, err = parseRelative(dateStr, base)
+	if err == nil {
 		return t, nil
 	}
 
-	return time.Time{}, ErrAbsoluteParse
+	return time.Time{}, err
 }

@@ -28,6 +28,7 @@ func TestParseRelative(t *testing.T) {
 		input    string
 		expected time.Time
 	}{
+		{"today", base},
 		{"yesterday", base.AddDate(0, 0, -1)},
 		{"tomorrow", base.AddDate(0, 0, 1)},
 		{"2 days ago", base.AddDate(0, 0, -2)},
